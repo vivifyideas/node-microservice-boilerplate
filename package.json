@@ -8,7 +8,7 @@
     "server": "babel-node ./src/bin/server",
     "server:prod": "node ./dist/bin/server",
     "dev": "cross-env NODE_ENV=development npm-run-all server",
-    "prod": "cross-env NODE_ENV=production npm-run-all c lean build server:prod",
+    "prod": "cross-env NODE_ENV=production npm-run-all clean build server:prod",
     "clean": "rimraf dist",
     "build": "babel ./src --out-dir dist",
     "test": "jest --runInBand --verbose",
@@ -16,6 +16,7 @@
     "eslint": "eslint src/**/*.js --ignore-pattern \"node_modules/\""
   },
   "dependencies": {
+    "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
@@ -46,6 +47,7 @@
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-sort-destructure-keys": "^1.3.3",
+    "nodemon": "^1.19.1",
     "prettier": "^1.18.2"
   }
 }
