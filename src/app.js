@@ -6,11 +6,20 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 
+// Config should be at the top of our imports so it is loaded before rest of the app since imports are hoisted.
+import "./config";
+
+import swaggerUi from "swagger-ui-express";
+import { spec } from "./configs/swaggerJsDocs";
+
 import indexRouter from "./routes/index";
 
-const whitelist = ['http://localhost:80'];
+const whitelist = ["http://localhost:80"];
 
 const app = express();
+
+// Swagger setup
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(spec));
 
 app.use(logger("dev"));
 app.use(
