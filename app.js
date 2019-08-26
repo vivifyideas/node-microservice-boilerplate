@@ -2,14 +2,23 @@ import "@babel/polyfill";
 import createError from "http-errors";
 import express from "express";
 import path from "path";
+import cors from "cors";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 
 import indexRouter from "./routes/index";
 
+const whitelist = ['http://localhost:80'];
+
 const app = express();
 
 app.use(logger("dev"));
+app.use(
+  cors({
+    methods: ["DELETE", "GET", "OPTIONS", "POST", "PUT"],
+    origin: whitelist
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
